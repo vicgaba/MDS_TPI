@@ -12,6 +12,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <?php
     session_start();
 
+    require("connection.php");
+
+    $_SESSION["cant_reservas"] = 0;
+
     if (!$_SESSION["USER"]) {
         header("location: index.php");
     };
@@ -97,14 +101,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <label for="servicio">Elija el servicio que desea reservar</label><br>
 
                             <select name="servicio">
+                            <?php
+                                $sql = "select Id_servicio, Nombre from Servicios";
+                                $result = $conn->query($sql);
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo '<option value='.$row["Nombre"].'>'.$row["Nombre"].'</opton>';
+                                    }
+                                }
+                                
+                                ?>
 
-                                <option value="Belleza">Belleza</option>
+                                <!-- <option value="Belleza">Belleza</option>
 
                                 <option value="Masajes">Masajes</option>
 
                                 <option value="Faciales">Tratamientos faciales</option>
 
-                                <option value="Corporales">Tratamienots corporales</option>
+                                <option value="Corporales">Tratamienots corporales</option> -->
 
                             </select>
 
@@ -129,7 +143,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </select>
 
                             <br><br>
-
+                            <input name="continua" id= "continua" type="submit" value="Reservar y agregar otro turno">      
                             <input type="submit" value="Reservar">
 
 				    	</form>
