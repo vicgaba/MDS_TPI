@@ -380,7 +380,7 @@ a.list-group-item:hover, a.list-group-item:focus {
 	float:right;
 }
 .header-left a{
-	padding: 2em 1em 1em;
+	padding: 1em 0.5em 0.5em;
     background:#c6c5c0;
     color: #fff;
     font-size: 2em;
