@@ -12,6 +12,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <?php
     session_start();
 
+    if (!$_SESSION["USER"]) {
+        header("location: index.php");
+    };
+
 ?>
 
 <!DOCTYPE html>
